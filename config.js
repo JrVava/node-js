@@ -11,4 +11,11 @@ const database = {
   database: process.env.MYSQL_DATABASE,
 };
 
-module.exports = { port, database };
+const jwtToken = {
+  tokenSecret: process.env.ACCESS_TOKEN_SECRET,
+  tokenExpiry: process.env.ACCESS_TOKEN_EXPIRY,
+  refTokenSecret: process.env.REF_TOKEN_SECRET,
+  refTokenExpiry: process.env.REF_TOKEN_EXPIRY,
+};
+
+module.exports = { port, database, jwtToken };
