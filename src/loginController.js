@@ -27,24 +27,34 @@ const registration = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    console.log(db);
-    return;
-    const result = await db.query(
-      "SELECT * FROM users",
-      function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      }
-    );
-    console.log(result);
-    return;
+    const result = await new Promise((resolve, reject) => {
+      db.query(
+        "SELECT * FROM users WHERE email = ?",
+        [email],
+        (err, result, fields) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+    });
+    if (result.length === 0) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
     if (result && result.length > 0) {
       const user = result[0];
-      console.log("User found:", user);
+      const hashedPassword = user.password;
+      const passwordMatch = await bcrypt.compare(password, hashedPassword);
+      if (!passwordMatch) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+      const token = jwt.sign({ email }, secretKey, { expiresIn: "1h" });
+      user.token = token;
+      res.json(user);
       // ... rest of your code
-    } else {
-      console.log("User not found");
-      res.status(404).json({ error: "User not found" });
     }
   } catch (error) {
     console.error("Error fetching user by email:", error);
