@@ -24,7 +24,7 @@ const registration = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, saltRounds);
     // Store the username and hashed password in the database
     await db.query(
-      "INSERT INTO users (name, password, email,username,gender,phone_number,nationality,role_exp,area) VALUES (?, ?, ?,?,?,?,?,?,?,?)",
+      "INSERT INTO users (name, password, email,username,gender,phone_number,nationality,role_exp,area,expected_salary) VALUES (?, ?, ?,?,?,?,?,?,?,?)",
       [
         name,
         passwordHash,
