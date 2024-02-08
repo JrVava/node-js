@@ -7,14 +7,34 @@ const secretKey = config.jwtToken.tokenSecret;
 const saltRounds = 10;
 
 const registration = async (req, res) => {
-  const { name, email, password } = req.body;
+  const {
+    name,
+    email,
+    password,
+    username,
+    gender,
+    phone_number,
+    nationality,
+    role_exp,
+    area,
+  } = req.body;
   try {
     // Hash the password
     const passwordHash = await bcrypt.hash(password, saltRounds);
     // Store the username and hashed password in the database
     await db.query(
-      "INSERT INTO users (name, password, email) VALUES (?, ?, ?)",
-      [name, passwordHash, email]
+      "INSERT INTO users (name, password, email,username,gender,phone_number,nationality,role_exp,area) VALUES (?, ?, ?,?,?,?,?,?,?)",
+      [
+        name,
+        passwordHash,
+        email,
+        username,
+        gender,
+        phone_number,
+        nationality,
+        role_exp,
+        area,
+      ]
     );
 
     res.json({ message: "User registered successfully" });
@@ -25,12 +45,12 @@ const registration = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   try {
     const result = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT * FROM users WHERE email = ?",
-        [email],
+        "SELECT * FROM users WHERE username = ?",
+        [username],
         (err, result, fields) => {
           if (err) {
             reject(err);
@@ -51,7 +71,7 @@ const login = async (req, res) => {
       if (!passwordMatch) {
         return res.status(401).json({ error: "Invalid credentials" });
       }
-      const token = jwt.sign({ email }, secretKey, { expiresIn: "1h" });
+      const token = jwt.sign({ username }, secretKey, { expiresIn: "1h" });
       user.token = token;
       res.json(user);
       // ... rest of your code
