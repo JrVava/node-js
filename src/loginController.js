@@ -113,12 +113,12 @@ const employerRegistration = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, password } = req.body;
   try {
     const result = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT * FROM users WHERE username = ? and role = ?",
-        [username, role],
+        "SELECT * FROM users WHERE username = ?",
+        [username],
         (err, result, fields) => {
           if (err) {
             reject(err);
@@ -139,7 +139,7 @@ const login = async (req, res) => {
       if (!passwordMatch) {
         return res.status(401).json({ error: "Invalid credentials" });
       }
-      const token = jwt.sign({ username }, secretKey, { expiresIn: "1h" });
+      const token = jwt.sign({ user }, secretKey, { expiresIn: "1h" });
       user.token = token;
       res.json(user);
     }
