@@ -113,12 +113,12 @@ const employerRegistration = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, role } = req.body;
   try {
     const result = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT * FROM users WHERE username = ?",
-        [username],
+        "SELECT * FROM users WHERE username = ? and role = ?",
+        [username, role],
         (err, result, fields) => {
           if (err) {
             reject(err);
@@ -142,7 +142,6 @@ const login = async (req, res) => {
       const token = jwt.sign({ username }, secretKey, { expiresIn: "1h" });
       user.token = token;
       res.json(user);
-      // ... rest of your code
     }
   } catch (error) {
     console.error("Error fetching user by email:", error);
