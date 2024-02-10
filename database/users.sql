@@ -4,7 +4,7 @@
 -- https://tableplus.com/
 --
 -- Database: node_js
--- Generation Time: 2024-02-08 23:47:08.5970
+-- Generation Time: 2024-02-11 01:16:10.7350
 -- -------------------------------------------------------------
 
 
@@ -20,8 +20,8 @@
 
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `password` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -31,14 +31,18 @@ CREATE TABLE `users` (
   `nationality` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `role_exp` text COLLATE utf8mb4_general_ci,
   `area` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `role` int NOT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `registration_number` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `username`, `gender`, `phone_number`, `nationality`, `role_exp`, `area`) VALUES
-(1, 'ashish', 'admin@gamil.com', '$2b$10$UdnwQvDhUKcnkIfbZc9Fceq1KPqTkQ7V60Q/W.9QLqWpOH0WYbaZu', '2024-02-07 22:43:37', '2024-02-07 22:43:37', '', NULL, NULL, NULL, NULL, NULL),
-(3, 'ashish', 'ashish@gamil.com', '$2b$10$LpNn5jJa415b9PRA7NuQGeAu9dIN/jj1TAdILSy750Qm39lS.hdfG', '2024-02-07 23:30:53', '2024-02-07 23:30:53', '', NULL, NULL, NULL, NULL, NULL),
-(4, 'ashish', 'ashish1@gamil.com', '$2b$10$jbY8CSOE8ozFcAX./Js99ekGc6irWOGxeWWNHQ.ovlp81hCNBGNr6', '2024-02-08 23:10:54', '2024-02-08 23:10:54', 'vava', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `username`, `gender`, `phone_number`, `nationality`, `role_exp`, `area`, `role`, `company_name`, `registration_number`) VALUES
+(1, 'ashish', 'admin@gamil.com', '$2b$10$UdnwQvDhUKcnkIfbZc9Fceq1KPqTkQ7V60Q/W.9QLqWpOH0WYbaZu', '2024-02-07 22:43:37', '2024-02-07 22:43:37', '', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL),
+(3, 'ashish', 'ashish@gamil.com', '$2b$10$LpNn5jJa415b9PRA7NuQGeAu9dIN/jj1TAdILSy750Qm39lS.hdfG', '2024-02-07 23:30:53', '2024-02-07 23:30:53', '', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL),
+(4, 'ashish', 'ashish1@gamil.com', '$2b$10$jbY8CSOE8ozFcAX./Js99ekGc6irWOGxeWWNHQ.ovlp81hCNBGNr6', '2024-02-08 23:10:54', '2024-02-08 23:10:54', 'vava', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL),
+(5, NULL, NULL, '$2b$10$MhEiDXj03Q0zmmgspxCcfu6kg.DFgOj0k5PIW5K34w4ZJALNI6V8q', '2024-02-11 01:13:26', '2024-02-11 01:13:26', 'abc', NULL, '1111111', NULL, NULL, NULL, 2, 'abc', '123456789');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
