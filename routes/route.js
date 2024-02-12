@@ -8,6 +8,8 @@ const {
   deleteJob,
   getJobs,
 } = require("./../src/jobController");
+
+const { jobListing } = require("./../src/jobListingController");
 const {
   registration,
   login,
@@ -15,7 +17,7 @@ const {
 } = require("./../src/loginController");
 
 router.use(
-  ["/job/create", "/job/update", "/job/delete/:id", "/jobs"],
+  ["/job/create", "/job/update", "/job/delete/:id", "/jobs", "/jobs/listing"],
   verifyToken
 );
 
@@ -23,6 +25,8 @@ router.route("/job/create").post(create);
 router.route("/job/update").put(update);
 router.route("/job/delete/:id").delete(deleteJob);
 router.route("/jobs").get(getJobs);
+
+router.route("/jobs/listing").get(jobListing);
 
 router.route("/sign-up").post(registration);
 router.route("/employer/sign-up").post(employerRegistration);
