@@ -21,6 +21,10 @@ const registration = async (req, res) => {
     role,
   } = req.body;
   try {
+    let role_type = role === 'Employee' ? 3  : null 
+    if (role_type === null) {
+      return res.status(401).json({ error: "Please select the role." });
+    }
     const result = await new Promise((resolve, reject) => {
       db.query(
         "SELECT * FROM users WHERE username = ?",
@@ -53,7 +57,7 @@ const registration = async (req, res) => {
         role_exp,
         area,
         expected_salary,
-        role,
+        role_type,
       ]
     );
 
@@ -74,6 +78,10 @@ const employerRegistration = async (req, res) => {
     role,
   } = req.body;
   try {
+    let role_type = role === 'Employer' ? 2  : null 
+    if (role_type === null) {
+      return res.status(401).json({ error: "Please select the role." });
+    }
     const result = await new Promise((resolve, reject) => {
       db.query(
         "SELECT * FROM users WHERE username = ?",
@@ -101,7 +109,7 @@ const employerRegistration = async (req, res) => {
         username,
         phone_number,
         passwordHash,
-        role,
+        role_type,
       ]
     );
 
