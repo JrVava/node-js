@@ -7,6 +7,7 @@ const {
   update,
   deleteJob,
   getJobs,
+  viewAppliedJobs,
 } = require("./../src/jobController");
 
 const { jobListing } = require("./../src/jobListingController");
@@ -25,6 +26,7 @@ router.use(
     "/jobs",
     "/jobs/listing",
     "/apply/job/:id",
+    "/view/job/:id",
   ],
   verifyToken
 );
@@ -33,6 +35,7 @@ router.route("/job/create").post(create);
 router.route("/job/update").put(update);
 router.route("/job/delete/:id").delete(deleteJob);
 router.route("/jobs").get(getJobs);
+router.route("/view/job/:id").get(viewAppliedJobs);
 
 router.route("/apply/job/:id").put(applyJob);
 

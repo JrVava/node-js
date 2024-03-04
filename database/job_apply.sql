@@ -4,7 +4,7 @@
 -- https://tableplus.com/
 --
 -- Database: node_js
--- Generation Time: 2024-03-04 23:39:23.9150
+-- Generation Time: 2024-03-05 00:09:53.0900
 -- -------------------------------------------------------------
 
 
@@ -22,15 +22,18 @@ CREATE TABLE `job_apply` (
   `id` int NOT NULL AUTO_INCREMENT,
   `job_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
+  `applied_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `job_id` (`job_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `job_apply_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`id`),
   CONSTRAINT `job_apply_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `job_apply` (`id`, `job_id`, `user_id`) VALUES
-(1, 6, 5);
+INSERT INTO `job_apply` (`id`, `job_id`, `user_id`, `applied_at`) VALUES
+(1, 6, 4, '2024-03-04 18:24:49'),
+(2, 7, 3, '2024-03-04 18:24:49'),
+(3, 7, 4, '2024-03-04 18:24:49');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

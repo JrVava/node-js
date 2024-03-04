@@ -122,4 +122,36 @@ const getJobs = async (req, res) => {
     return res.status(401).json({ error: "Something went wrong." });
   }
 };
-module.exports = { create, update, deleteJob, getJobs };
+
+const viewAppliedJobs = (req, res) => {
+  try {
+    const jobId = req.params.id;
+    db.query(
+      `SELECT 
+      job.id AS job_id,
+      job.role AS job_title,
+      users.id AS user_id,
+      users.name AS user_name,
+      users.email AS user_email,
+      users.gender AS user_gender,
+      users.phone_number AS user_phone_number,
+      users.nationality AS user_nationality,
+      users.area AS user_area,
+      users.role_exp AS user_role_exp
+      FROM job_apply
+      JOIN job ON job_apply.job_id = job.id
+      JOIN users ON job_apply.user_id = users.id
+      WHERE job.id = ?
+      `,
+      [jobId],
+      (error, data) => {
+        //   console.log(data);
+        res.status(200).json({ jobs: data });
+      }
+    );
+    // console.log(req);
+  } catch (error) {
+    return res.status(401).json({ error: "Something went wrong." });
+  }
+};
+module.exports = { create, update, deleteJob, getJobs, viewAppliedJobs };
