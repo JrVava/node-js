@@ -12,6 +12,7 @@ const {
 
 const { jobListing } = require("./../src/jobListingController");
 const { applyJob } = require("./../src/applyJobController");
+const { searchJob } = require("./../src/searchJob");
 const {
   registration,
   login,
@@ -27,6 +28,7 @@ router.use(
     "/jobs/listing",
     "/apply/job/:id",
     "/view/job/:id",
+    "/search-job",
   ],
   verifyToken
 );
@@ -40,6 +42,8 @@ router.route("/view/job/:id").get(viewAppliedJobs);
 router.route("/apply/job/:id").put(applyJob);
 
 router.route("/jobs/listing").get(jobListing);
+
+router.route("/search-job").post(searchJob);
 
 router.route("/sign-up").post(registration);
 router.route("/employer/sign-up").post(employerRegistration);

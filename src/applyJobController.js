@@ -3,7 +3,6 @@ const applyJob = async (req, res) => {
   const jobId = req.params.id;
   const userId = req.user.user.id;
   try {
-    const id = req.user.user.id;
     await db.query("INSERT INTO job_apply(job_id,user_id)VALUES(?,?)", [
       jobId,
       userId,
