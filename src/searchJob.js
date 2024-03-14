@@ -4,8 +4,8 @@ const searchJob = (req, res) => {
     const { role } = req.body;
     // db.query(`SELECT * FROM job`, (error, data) => {
     db.query(
-      `SELECT * FROM job where role = ?`,
-      [role], // Add a comma here to separate the array elements
+      `SELECT * FROM job where role LIKE ?`,
+      [`%${role}%`], // Enclose the placeholder with % symbols
       (error, data) => {
         if (error) {
           console.error("Error fetching jobs:", error);
