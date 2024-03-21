@@ -26,6 +26,8 @@ CREATE TABLE `job` (
   `end_date` date DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
   `pay` varchar(255) DEFAULT NULL,
+  `work_day` varchar(255) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
   `duration` varchar(255) DEFAULT NULL,
   `weekly` varchar(255) DEFAULT NULL,
   `additional_details` text,
@@ -36,25 +38,6 @@ CREATE TABLE `job` (
   KEY `fk_created_by` (`created_by`),
   CONSTRAINT `fk_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-INSERT INTO `job` (`id`, `company_name`, `role`, `start_date`, `end_date`, `location`, `pay`, `duration`, `weekly`, `additional_details`, `created_by`, `created_at`, `updated_at`) VALUES
-(6, 'ashish', 'technology', '2024-02-01', '2024-02-11', 'ahmedabad', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:20:18', '2024-02-11 03:20:18'),
-(7, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:11', '2024-02-11 03:51:11'),
-(8, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:11', '2024-02-11 03:51:11'),
-(9, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:13', '2024-02-11 03:51:13'),
-(10, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:14', '2024-02-11 03:51:14'),
-(11, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:15', '2024-02-11 03:51:15'),
-(12, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:15', '2024-02-11 03:51:15'),
-(13, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 4, '2024-02-11 03:51:16', '2024-02-11 03:51:16'),
-(14, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:16', '2024-02-11 03:51:16'),
-(15, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:17', '2024-02-11 03:51:17'),
-(16, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:17', '2024-02-11 03:51:17'),
-(17, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:18', '2024-02-11 03:51:18'),
-(18, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:18', '2024-02-11 03:51:18'),
-(19, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:18', '2024-02-11 03:51:18'),
-(20, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 5, '2024-02-11 03:51:19', '2024-02-11 03:51:19'),
-(21, 'abc', 'tech', '2024-02-11', '2024-02-11', 'ahmd', '400,000', '10 days', 'sunday off', 'firday movide day', 4, '2024-02-11 03:51:19', '2024-02-11 03:51:19');
-
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

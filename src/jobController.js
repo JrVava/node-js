@@ -8,6 +8,8 @@ const create = async (req, res) => {
     end_date,
     location,
     pay,
+    work_day,
+    currency,
     duration,
     weekly,
     additional_details,
@@ -15,7 +17,7 @@ const create = async (req, res) => {
   } = req.body;
   try {
     await db.query(
-      "INSERT INTO job( company_name,role,start_date,end_date,location,pay,duration,weekly,additional_details,created_by)VALUES(?,?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO job( company_name,role,start_date,end_date,location,pay,work_day,currency,duration,weekly,additional_details,created_by)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
       [
         company_name,
         role,
@@ -23,6 +25,8 @@ const create = async (req, res) => {
         end_date,
         location,
         pay,
+        work_day,
+        currency,
         duration,
         weekly,
         additional_details,
@@ -43,6 +47,8 @@ const update = async (req, res) => {
     end_date,
     location,
     pay,
+    work_day,
+    currency,
     duration,
     weekly,
     additional_details,
@@ -58,6 +64,8 @@ const update = async (req, res) => {
       end_date = ?,
       location = ?,
       pay = ?,
+      work_day = ?,
+      currency = ?,
       duration = ?,
       weekly = ?,
       additional_details = ?
@@ -69,6 +77,8 @@ const update = async (req, res) => {
         end_date,
         location,
         pay,
+        work_day,
+        currency,
         duration,
         weekly,
         additional_details,
