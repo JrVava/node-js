@@ -104,7 +104,10 @@ const update = async (req, res) => {
 const deleteJob = (req, res) => {
   const jobId = req.params.id;
   try {
+    db.query(`DELETE FROM job_apply WHERE job_id = ?`, [jobId], (error, results) => {
+    });
     db.query(`DELETE FROM job WHERE id = ?`, [jobId], (error, results) => {
+      console.log("error", error)
       if (error) {
         res.status(500).json({ error: "Internal Server Error" });
         return;
